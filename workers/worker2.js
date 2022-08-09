@@ -1,7 +1,14 @@
-const fibonacciCalc = require("../math-logic/fibonacci-series");
+const amqp = require('amqplib/callback_api');
 
-process.on('message', number => {
-    const fabResult = fibonacciCalc(number);
-    console.log(`Worker 2 ID is: ${process.pid}`)
-    process.send(fabResult)
+amqp.connect("amqp://localhost", (err, connection) => {
+    if(err) process.exit()
+    const queueName = "queue"
+    connection.createChannel((err, channel) => {
+        channel.assertQueue(queueName, {durable: false})
+        channel.consume(queueName, msg => {
+            console.log("Waiting for messages")
+            console.log(`${queueName} - ${msg.content.toString()}`)
+
+        }, {noAck: true})
+    })
 })
