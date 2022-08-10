@@ -1,5 +1,5 @@
 const express = require("express");
-const jphRoutes = require("./jph-routes");
+// const jphRoutes = require("./jph-routes");
 
 // const FabQueue1 = require("./queues/queue1");
 // const FabQueue2 = require("./queues/queue2");
@@ -16,6 +16,6 @@ app.get("/", (request, response) => {
 
 });
 
-app.use("/api", jphRoutes);
+// app.use("/api", jphRoutes);
 
 app.listen(3000, () => console.log("Express App is running on PORT : 3000"));
