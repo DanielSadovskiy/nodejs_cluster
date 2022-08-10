@@ -3,11 +3,23 @@ services:
     nodeserver:
         build:
             context: ./
+        environment:
+            - INSTANCE_NUM="INSTANCE 1"
         ports:
             - "3000:3000"
+    nodeserver2:  
+        build:
+            context: ./
+        environment:
+            - INSTANCE_NUM="INSTANCE 2"
+        ports:
+            - "3001:3000"
     nginx:
         restart: always
         build:
             context: ./nginx
         ports:
             - "80:80"
+        depends_on:
+            - nodeserver
+            - nodeserver2

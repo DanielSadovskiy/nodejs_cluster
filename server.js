@@ -16,6 +16,11 @@ app.get("/", (request, response) => {
 
 });
 
+app.get("/world", (request, response) => {
+    console.log('proccess', process.env.INSTANCE_NUM)
+    response.send(JSON.stringify({"Hello":"World"}));
+});
+
 // app.use("/api", jphRoutes);
 
 app.listen(3000, () => console.log("Express App is running on PORT : 3000"));

@@ -1,21 +1,39 @@
 module.exports = {
   apps : [{
-    name: 'NodeJS Instance ',
+    name: 'NodeJS Instance 1',
     script: 'server.js',
-    instances: 2,
-    exec_mode : "cluster",
+    args: "Instance 1",
+    instances: 1,
     watch: true,
     autorestart: true,
+    env: {
+      NODE_ENV: 'development',
+      port: 3000
+    }
   },
   {
-    name: "Worker1",
-    script: 'workers/worker1.js',
+    name: 'NodeJS Instance 2',
+    script: 'server.js',
+    args: "Instance 2",
     instances: 1,
+    watch: true,
+    autorestart: true,
+    env: {
+      NODE_ENV: 'development',
+      port: 3001
+    }
   },
   {
-    name: "Worker2",
-    script: 'workers/worker2.js',
+    name: 'NodeJS Instance 2',
+    script: 'server.js',
+    args: "Instance 2",
     instances: 1,
-  }
+    watch: true,
+    autorestart: true,
+    env: {
+      NODE_ENV: 'development',
+      port: 3002
+    }
+  },
 ]
 };
